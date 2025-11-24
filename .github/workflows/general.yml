@@ -45,9 +45,9 @@ jobs:
           toolchain: stable
           override: true
           components: clippy
-      - uses: actions-rs/clippy-check@v1
+      - uses: actions-rs/cargo@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          command: clippy
           args: -- -D warnings
 
   coverage:
