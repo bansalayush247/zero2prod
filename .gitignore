@@ -1,0 +1,18 @@
+# Rust & project
+/target/
+/Cargo.lock
+
+# Editor
+.idea/
+.vscode/
+
+# Local environment
+.env
+configuration.yaml
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+.cargo/*/registry/index/*/cache
+*.log
