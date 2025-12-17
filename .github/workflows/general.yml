@@ -53,12 +53,8 @@ jobs:
         uses: actions-rust-lang/setup-rust-toolchain@v1
 
       - name: Install sqlx-cli
-        run:
-          cargo install sqlx-cli
-          --version=${{ env.SQLX_VERSION }}
-          --features ${{ env.SQLX_FEATURES }}
-          --no-default-features
-          --locked
+        run: |
+          cargo install sqlx-cli --version="${{ env.SQLX_VERSION }}" --features "${{ env.SQLX_FEATURES }}" --no-default-features --locked
           # The --locked flag can be used to force Cargo to use the packaged Cargo.lock file if it is available.
           # This may be useful for ensuring reproducible builds, to use the exact same set of dependencies that were available when the package was published.
           # It may also be useful if a newer version of a dependency is published that no longer builds on your system, or has other problems
@@ -135,11 +131,8 @@ jobs:
         with:
           components: llvm-tools-preview
       - name: Install sqlx-cli
-        run: cargo install sqlx-cli
-          --version=${{ env.SQLX_VERSION }}
-          --features ${{ env.SQLX_FEATURES }}
-          --no-default-features
-          --locked
+        run: |
+          cargo install sqlx-cli --version="${{ env.SQLX_VERSION }}" --features "${{ env.SQLX_FEATURES }}" --no-default-features --locked
       - name: Create app user in Postgres
         run: |
           sudo apt-get install postgresql-client
@@ -154,7 +147,8 @@ jobs:
       - name: Migrate database
         run: SKIP_DOCKER=true ./scripts/init_db.sh
       - name: Install cargo-llvm-cov
-        uses: taiki-e/install-action@cargo-llvm-cov
+        run: |
+          cargo install cargo-llvm-cov
       - name: Generate code coverage
         run: cargo llvm-cov --all-features --workspace --lcov --output-path lcov.info
       - name: Generate report
