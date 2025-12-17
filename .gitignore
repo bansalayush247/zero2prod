@@ -8,7 +8,7 @@
 
 # Local environment
 .env
-configuration.yaml
+# configuration.yaml is intentionally committed for CI/tests. Remove this line to ignore it locally.
 
 # Docker
 docker-compose.override.yml

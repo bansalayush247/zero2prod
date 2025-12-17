@@ -48,5 +48,4 @@ export DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@localhost:${DB_PORT}/${
 sqlx database create
 sqlx migrate run
 
-export DATABASE_URL=postgres://postgres:password@127.0.0.1:5432/newsletter
-sqlx migrate add create_subscriptions_table
+# Do not create new migrations in CI; migrations should be checked in.
