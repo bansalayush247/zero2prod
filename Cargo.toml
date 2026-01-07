@@ -12,22 +12,30 @@ path = "src/main.rs"
 name = "zero2prod"
 
 [dependencies]
+tracing = { version = "0.1", features = ["log"] }
+tracing-log = "0.1"
+tracing-bunyan-formatter = "0.3"
+tracing-actix-web = "0.5"
 actix-web = "4"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 reqwest="0.11"
 config = "0.13"
-
+secrecy = { version = "0.8", features = ["serde"] }
+tracing-subscriber = { version = "0.3", features = ["registry", "env-filter"] }
 serde = { version = "1", features = ["derive"] }
 uuid = { version = "1", features = ["v4"] }
 chrono = { version = "0.4", features = ["clock"] }
+once_cell = "1"
 
 [dependencies.sqlx]
 version = "0.7"
 default-features = false
 features = [
 	"runtime-tokio-rustls",
-"postgres",
-"uuid",
-"chrono",
-"migrate"
+	"postgres",
+	"uuid",
+	"chrono",
+	"migrate",
+	"macros"
 ]
+# Enable sqlx compile-time checked macros (e.g. `query!`)
